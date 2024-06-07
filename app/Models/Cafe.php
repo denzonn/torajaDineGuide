@@ -11,6 +11,7 @@ class Cafe extends Model
 
     protected $fillable = [
         'name',
+        'kuliner_type',
         'is_halal',
         'longitude',
         'latitude',

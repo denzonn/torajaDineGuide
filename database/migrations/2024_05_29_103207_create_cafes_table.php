@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cafes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('kuliner_type', ['Cafe', 'Rumah Makan'])->default('Cafe');
             $table->boolean('is_halal');
             $table->string('longitude');
             $table->string('latitude');

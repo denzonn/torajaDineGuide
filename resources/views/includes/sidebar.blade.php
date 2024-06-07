@@ -10,7 +10,7 @@
         </li>
         <li
             class="{{ request()->is('admin/cafe*') ? 'bg-secondary text-white' : '' }} py-2 px-6 rounded-md  hover:bg-secondary hover:text-white transition">
-            <a href="/admin/cafe" class="p-0"><i class="fa-solid fa-mug-saucer"></i> Cafe</a>
+            <a href="/admin/cafe" class="p-0"><i class="fa-solid fa-mug-saucer"></i> Kuliner</a>
         </li>
     </ul>
     <div>

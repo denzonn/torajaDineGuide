@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('title')
-    Cafe
+    Kuliner
 @endsection
 
 @section('content')
     <div class="bg-white p-8 rounded-md text-gray-500">
         <a href="{{ route('cafe.create') }}" class="px-6 py-3 bg-secondary rounded-md text-white">
-            Tambah Cafe
+            Tambah Kuliner
         </a>
         <div class="pt-4">
             <table id="cafeTable" class="w-full">
@@ -18,7 +18,10 @@
                             No</th>
                         <th scope="col"
                             class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-6/12">
-                            Nama Cafe</th>
+                            Nama Kuliner</th>
+                        <th scope="col"
+                            class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-6/12">
+                            Jenis Kuliner</th>
                         <th scope="col"
                             class="px-6 py-3 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Action
@@ -45,6 +48,10 @@
                     {
                         data: 'name',
                         name: 'name'
+                    },
+                    {
+                        data: 'kuliner_type',
+                        name: 'kuliner_type'
                     },
                     {
                         data: 'id',
