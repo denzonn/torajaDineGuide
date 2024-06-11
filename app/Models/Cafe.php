@@ -16,4 +16,8 @@ class Cafe extends Model
         'longitude',
         'latitude',
     ];
+
+    public function review(){
+        return $this->hasMany(CafeReview::class);
+    }
 }

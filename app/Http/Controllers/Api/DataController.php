@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Cafe;
+use App\Models\CafeReview;
 use App\Models\Category;
 use App\Models\Menu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataController extends BaseController
 {
@@ -21,7 +24,7 @@ class DataController extends BaseController
 
     public function cafe()
     {
-        $cafe = Cafe::all();
+        $cafe = Cafe::with(['review.user'])->get();
 
         if ($cafe->isEmpty()) {
             return $this->sendError('Cafe Not Found');
@@ -38,5 +41,18 @@ class DataController extends BaseController
             return $this->sendError('Menu Not Found');
         }
         return $this->sendResponse($menu, 'Success Get Menu');
+    }
+
+    public function review(Request $request, $cafe_id)
+    {
+        $data = $request->all();
+
+        CafeReview::create([
+            'user_id' => Auth::user()->id,
+            'cafe_id' => $cafe_id,
+            ...$data
+        ]);
+
+        return $this->sendResponse($data, 'Success Create Review');
     }
 }
