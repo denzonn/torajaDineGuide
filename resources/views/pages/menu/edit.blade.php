@@ -42,6 +42,10 @@
                             accept=".png, .jpg, .jpeg" />
                     </div>
                 </div>
+                <div class="mt-6 flex flex-col gap-2">
+                    <label for="">Deskripsi</label>
+                    <textarea name="description" id="editor" cols="30" rows="10">{!! $data->description !!}</textarea>
+                </div>
                 <div class="mt-4 flex items-center justify-center w-full">
                     <img src="{{ Storage::url($data->photo) }}" alt="" class="h-[250px]">
                 </div>
@@ -53,3 +57,14 @@
         </div>
     </div>
 @endsection
+
+@push('addon-script')
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush
+

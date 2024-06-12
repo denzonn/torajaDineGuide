@@ -14,7 +14,8 @@ class Menu extends Model
         'cafe_id',
         'name',
         'price',
-        'photo'
+        'photo',
+        'description',
     ];
 
     public function category()

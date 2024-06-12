@@ -17,8 +17,6 @@
     <title>
         @yield('title')
     </title>
-
-    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-[#F4F6F8]">

@@ -11,12 +11,12 @@
             <div class="text-xl font-semibold">Tambahkan Cafe</div>
         </div>
         <div>
-            <form action="{{ route('cafe.store') }}" method="POST">
+            <form action="{{ route('cafe.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-2 gap-2">
                     <div class="mt-6 flex flex-col gap-2">
-                        <label for="">Nama Cafe</label>
-                        <input type="text" placeholder="Masukkan Nama Cafe" name="name"
+                        <label for="">Nama Kuliner</label>
+                        <input type="text" placeholder="Masukkan Nama Kuliner" name="name"
                             class="w-full border px-4 py-2 rounded-md bg-transparent" required />
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -48,6 +48,11 @@
                         <input type="text" placeholder="Masukkan Titik Longitude" name="longitude"
                             class="w-full border px-4 py-2 rounded-md bg-transparent" required />
                     </div>
+                </div>
+                <div class="mt-6 flex flex-col gap-2">
+                    <label for="">Foto Kuliner</label>
+                    <input type="file" name="photo" class="w-full border px-4 py-[6px] rounded-md bg-transparent"
+                        required accept=".png, .jpg, .jpeg" />
                 </div>
                 <button type="submit" class="w-full rounded-md bg-secondary mt-8 text-white py-2 text-lg">Tambah
                     Cafe</button>

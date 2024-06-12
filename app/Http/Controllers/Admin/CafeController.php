@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cafe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class CafeController extends Controller
@@ -39,6 +40,16 @@ class CafeController extends Controller
     {
         $data = $request->all();
 
+        if ($request->hasFile('photo')) {
+            $images = $request->file('photo');
+
+            $extension = $images->getClientOriginalExtension();
+
+            $file_name = uniqid() . "." . $extension;
+
+            $data['photo'] = $images->storeAs('kuliner', $file_name, 'public');
+        }
+
         Cafe::create($data);
 
         return redirect()->route('cafe.index')->with('toast_success', 'Create Cafe Successfully!');
@@ -69,7 +80,20 @@ class CafeController extends Controller
     {
         $data = $request->all();
 
-        Cafe::findOrFail($id)->update($data);
+        $cafe = Cafe::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+            Storage::disk('public')->delete($cafe->photo);
+
+            $images = $request->file('photo');
+
+            $extension = $images->getClientOriginalExtension();
+
+            $file_name = uniqid() . "." . $extension;
+
+            $data['photo'] = $images->storeAs('kuliner', $file_name, 'public');
+        }
+        $cafe->update($data);
 
         return redirect()->route('cafe.index')->with('toast_success', 'Update Cafe Successfully!');
     }
@@ -79,7 +103,14 @@ class CafeController extends Controller
      */
     public function destroy(string $id)
     {
-        Cafe::findOrFail($id)->delete();
+        $cafe = Cafe::findOrFail($id);
+
+        if ($cafe->photo) {
+            Storage::disk('public')->delete($cafe->photo);
+        }
+
+        $cafe->delete();
+
 
         return redirect()->route('cafe.index')->with('toast_success', 'Delete Cafe Successfully!');
     }
