@@ -24,5 +24,6 @@ Route::middleware(['auth:api'])->group(function() {
     Route::get('cafe', [DataController::class, 'cafe']);
     Route::get('menu/{cafe_id}', [DataController::class, 'menu']);
 
+    Route::get('review-cafe/{cafe_id}', [DataController::class, 'getReview']);
     Route::post('review-cafe/{cafe_id}', [DataController::class, 'review']);
 });
