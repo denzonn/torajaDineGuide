@@ -83,7 +83,9 @@ class CafeController extends Controller
         $cafe = Cafe::findOrFail($id);
 
         if ($request->hasFile('photo')) {
-            Storage::disk('public')->delete($cafe->photo);
+            if($cafe->photo){
+                Storage::disk('public')->delete($cafe->photo);
+            }
 
             $images = $request->file('photo');
 

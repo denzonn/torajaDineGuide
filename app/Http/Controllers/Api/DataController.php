@@ -35,19 +35,29 @@ class DataController extends BaseController
 
     public function menu($cafe_id)
     {
-        $menu = Menu::where('cafe_id', $cafe_id)->with(['category'])->orderBy('category_id')->get();
+        $category_id = request()->input('category_id');
+
+        $query = Menu::where('cafe_id', $cafe_id);
+
+        if (!is_null($category_id)) {
+            $query->where('category_id', $category_id);
+        }
+
+        $menu = $query->with(['category'])->orderBy('category_id')->get();
 
         if ($menu->isEmpty()) {
             return $this->sendError('Menu Not Found');
         }
+
         return $this->sendResponse($menu, 'Success Get Menu');
     }
+
 
     public function getReview($cafe_id)
     {
         $data = CafeReview::where('cafe_id', $cafe_id)->where('user_id', Auth::user()->id)->first();
 
-        if(!$data){
+        if (!$data) {
             return $this->sendError('Review Not Found');
         }
 

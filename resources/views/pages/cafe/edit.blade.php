@@ -55,11 +55,17 @@
                             required />
                     </div>
                 </div>
-                <div class="mt-6 flex flex-col gap-2">
-                    <label for="">Foto Menu <span class="text-red-500 text-xs">*Tidak perlu upload klaw tidak
-                            ingin mengganti</span></label>
-                    <input type="file" name="photo" class="w-full border px-4 py-[6px] rounded-md bg-transparent"
-                        accept=".png, .jpg, .jpeg" />
+                <div class="mt-6 grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="">Foto Kuliner <span class="text-red-500 text-xs">*Tidak perlu upload klaw tidak
+                                ingin mengganti</span></label>
+                        <input type="file" name="photo" class="w-full border px-4 py-[6px] rounded-md bg-transparent"
+                            accept=".png, .jpg, .jpeg" />
+                    </div>
+                    <div>
+                        <div>Foto Kuliner</div>
+                        <img src="{{ Storage::url($data->photo) }}" alt="" class="w-48">
+                    </div>
                 </div>
                 <button type="submit" class="w-full rounded-md bg-secondary mt-8 text-white py-2 text-lg">Update
                     Cafe</button>
